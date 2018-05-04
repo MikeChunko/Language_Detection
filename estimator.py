@@ -78,6 +78,7 @@ def main(argv):
         print("Saved model to {}".format({classifier.model_dir}))
 
         # Highest: 87.65
+        # Current: 85.237
         print("\nAccuracy with test data: {accuracy:0.3%}\n".format(**eval_result))
 
 
