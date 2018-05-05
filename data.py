@@ -15,7 +15,7 @@ while decrement:
     try:
         csv.field_size_limit(maxInt)
     except OverflowError:
-        maxInt = int(maxInt/10)
+        maxInt = int(maxInt / 10)
         decrement = True
 
 TRAIN_PATH = "data/collated_train"
@@ -24,7 +24,7 @@ CSV_COLUMN_NAMES = ['Char1', 'Char2', 'Char3', 'Char4', 'Char5', 'Char6', 'Char7
                     'Char8', 'Char9', 'Char10', 'Char11', 'Char12', 'Char13', 'Char14',
                     'Char15', 'Char16', 'Language']
 CSV_TYPES = [[''], [''], [''], [''], [''], [''], [''], [''], [''], [''], [''], [''], [''], [''], [''], ['']]
-LANGUAGE = ['English', 'Spanish', 'Italian', 'German']
+LANGUAGE = ['German', 'English', 'Spanish', 'Italian']
 
 
 # Note to self:

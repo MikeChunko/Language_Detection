@@ -7,10 +7,10 @@ def read_word():
 
     while True:
         word = input("Input the word to be tested or \'-1\' to quit: \n")
-        if word.isalpha() or word == "-1":
+        if (word.isalpha() and word.__len__() <= 16) or word == "-1":
             break
         else:
-            print("The word must contain only alphabetical characters")
+            print("The word must contain only alphabetical characters and be a maximum of 16 characters long")
 
     sentinel = False
 
@@ -67,7 +67,7 @@ def list_to_features(integer_list=[0] * 16):
 def input_features():
     """ Used for entering custom words to use for prediction """
     word = str()
-    sentinel = True
+    sentinel = False
     word, sentinel = read_word()
 
     integer_list = list()

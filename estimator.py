@@ -4,12 +4,14 @@ from __future__ import division
 
 import tensorflow as tf
 import data
+import input
 
 
 def main(argv):
     with tf.Session() as session:
         (train_x, train_y), (test_x, test_y) = data.load_data()
 
+        # Creation of the features
         my_categorical_columns = [
             tf.feature_column.categorical_column_with_identity(key='Char1', num_buckets=27),
             tf.feature_column.categorical_column_with_identity(key='Char2', num_buckets=27),
@@ -62,7 +64,7 @@ def main(argv):
         )
 
         batch_size = 1000
-        train_steps = 5000
+        train_steps = 50000
 
         # Uses the classifier to train the neural network
         classifier.train(
@@ -77,9 +79,61 @@ def main(argv):
 
         print("Saved model to {}".format({classifier.model_dir}))
 
-        # Highest: 87.65
-        # Current: 85.237
         print("\nAccuracy with test data: {accuracy:0.3%}\n".format(**eval_result))
+
+        # Takes custom input for prediction
+        char1 = list()
+        char2 = list()
+        char3 = list()
+        char4 = list()
+        char5 = list()
+        char6 = list()
+        char7 = list()
+        char8 = list()
+        char9 = list()
+        char10 = list()
+        char11 = list()
+        char12 = list()
+        char13 = list()
+        char14 = list()
+        char15 = list()
+        char16 = list()
+        sentinel = False
+
+        while not sentinel:
+            char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, \
+            char14, char15, char16, sentinel = input.input_features()
+            print(char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, char14,
+                  char15, char16, sentinel)
+
+            prediction_x = {
+                'Char1': char1,
+                'Char2': char2,
+                'Char3': char3,
+                'Char4': char4,
+                'Char5': char5,
+                'Char6': char6,
+                'Char7': char7,
+                'Char8': char8,
+                'Char9': char9,
+                'Char10': char10,
+                'Char11': char11,
+                'Char12': char12,
+                'Char13': char13,
+                'Char14': char14,
+                'Char15': char15,
+                'Char16': char16,
+            }
+
+            prediction = classifier.predict(
+                input_fn=lambda: data.test_input_fn(prediction_x, labels=None, batch_size=batch_size))
+
+            expected_y = ['German', 'English', 'Spanish', 'Italian']
+            for pred_dict, expec in zip(prediction, expected_y):
+                template = '\nPrediction is "{}" ({:.1f}%)'
+                class_id = pred_dict['class_ids'][0]
+                probability = pred_dict['probabilities'][class_id]
+                print(template.format(data.LANGUAGE[class_id], 100 * probability))
 
 
 if __name__ == '__main__':
