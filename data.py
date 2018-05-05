@@ -81,7 +81,6 @@ def csv_input(csv_path, batch_size):
 
 
 def main(argv):
-    """ This main exists for debugging purposes """
     print(load_data())
 
 
