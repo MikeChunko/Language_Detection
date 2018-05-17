@@ -54,6 +54,7 @@ def main(argv):
         checkpoint_config = tf.estimator.RunConfig(
             save_checkpoints_secs=60, keep_checkpoint_max=2
         )
+
         # Creates a classifier with 4 hidden layers that can choose between 4 categories
         classifier = tf.estimator.DNNClassifier(
             feature_columns=my_feature_columns,
@@ -64,7 +65,7 @@ def main(argv):
         )
 
         batch_size = 1000
-        train_steps = 50000
+        train_steps = 100
 
         # Uses the classifier to train the neural network
         classifier.train(

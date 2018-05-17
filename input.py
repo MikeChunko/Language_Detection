@@ -98,11 +98,17 @@ def input_features():
 
 
 def main():
-    char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, char14, \
-    char15, char16, sentinel = input_features()
+    while True:
+        char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, char14, \
+        char15, char16, sentinel = input_features()
 
-    print(char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, char14,
-          char15, char16, sentinel)
+        print(char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, char14,
+              char15, char16, sentinel)
+
+        if sentinel:
+            break
+        else:
+            print("\n")
 
 
 if __name__ == '__main__':
