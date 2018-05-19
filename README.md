@@ -1,4 +1,4 @@
-# language-detection-neural-network
+# Language_Detection
 This is a neural network that was created in 2018 for Honors Computer Science IV.
-The neural network is capable of identifying what language a word is from.
+The neural network uses TensorFlow to identifying whether a word is german, english, spanish, or italian.
 All data is obtained from the Leipzig Corpora Collection.
