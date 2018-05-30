@@ -61,11 +61,11 @@ def main(argv):
             hidden_units=[
                 16, 15, 14, 13
             ],
-            n_classes=4, model_dir='language_detector', config=checkpoint_config
+            n_classes=5, model_dir='language_detector', config=checkpoint_config
         )
 
-        batch_size = 1000
-        train_steps = 100
+        batch_size = 100
+        train_steps = 1000
 
         # Uses the classifier to train the neural network
         classifier.train(
@@ -129,7 +129,7 @@ def main(argv):
             prediction = classifier.predict(
                 input_fn=lambda: data.test_input_fn(prediction_x, labels=None, batch_size=batch_size))
 
-            expected_y = ['German', 'English', 'Spanish', 'Italian']
+            expected_y = ['German', 'English', 'Spanish', 'Italian', 'Lithuanian']
             for pred_dict, expec in zip(prediction, expected_y):
                 template = '\nPrediction is "{}" ({:.1f}%)'
                 class_id = pred_dict['class_ids'][0]
