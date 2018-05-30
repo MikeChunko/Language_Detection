@@ -179,6 +179,30 @@ public class Preprocessing
                             case 255: //ÿ
                                 replacement = "y";
                                 break;
+                            case 352: //Š
+                                replacement = "sh";
+                                break;
+                            case 353: //š
+                                replacement = "sh";
+                                break;
+                            case 381: //Ž
+                                replacement = "zh";
+                                break;
+                            case 382: //ž
+                                replacement = "zh";
+                                break;
+                            case 268: //Č
+                                replacement = "ch";
+                                break;
+                            case 269: //č
+                                replacement = "ch";
+                                break;
+                            case 280: //Ę
+                                replacement = "ch";
+                                break;
+                            case 281: //ę
+                                replacement = "ch";
+                                break;
                         }
 
                         // If a non-standard character was found, replaces it with its standard equivalent
@@ -200,6 +224,10 @@ public class Preprocessing
                         // Only ignores the first character in German so that nouns can be used
                         if(!(currentChar >= 97 && currentChar <= 122))
                         {
+                            //if(languageCode != "de" || j != 0)
+                            //{
+                            //    isLowerCase = false;
+                            //}
                             if(languageCode == "de" && j == 0 && currentChar >= 65 && currentChar <= 90)
                             {
                                 parts[i] = parts[i].substring(0, j) + Character.toLowerCase(currentChar) +
