@@ -24,7 +24,7 @@ CSV_COLUMN_NAMES = ['Char1', 'Char2', 'Char3', 'Char4', 'Char5', 'Char6', 'Char7
                     'Char8', 'Char9', 'Char10', 'Char11', 'Char12', 'Char13', 'Char14',
                     'Char15', 'Char16', 'Language']
 CSV_TYPES = [[''], [''], [''], [''], [''], [''], [''], [''], [''], [''], [''], [''], [''], [''], [''], ['']]
-LANGUAGE = ['German', 'English', 'Spanish', 'Italian', 'Lithuanian']
+LANGUAGE = ['German', 'English', 'Spanish', 'Italian']
 
 
 # Note to self:

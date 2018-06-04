@@ -61,7 +61,7 @@ def main(argv):
             hidden_units=[
                 16, 15, 14, 13
             ],
-            n_classes=5, model_dir='language_detector', config=checkpoint_config
+            n_classes=4, model_dir='language_detector', config=checkpoint_config
         )
 
         batch_size = 100
@@ -102,6 +102,7 @@ def main(argv):
         sentinel = False
 
         while not sentinel:
+            print("----------------")
             char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, \
             char14, char15, char16, sentinel = input.input_features()
             print(char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, char14,
@@ -127,10 +128,11 @@ def main(argv):
                     'Char16': char16,
                 }
 
+                print("----------------")
                 prediction = classifier.predict(
                     input_fn=lambda: data.test_input_fn(prediction_x, labels=None, batch_size=batch_size))
 
-                expected_y = ['German', 'English', 'Spanish', 'Italian', 'Lithuanian']
+                expected_y = ['German', 'English', 'Spanish', 'Italian']
                 for pred_dict, expec in zip(prediction, expected_y):
                     template = '\nPrediction is "{}" ({:.1f}%)'
                     class_id = pred_dict['class_ids'][0]
@@ -141,3 +143,7 @@ def main(argv):
 if __name__ == '__main__':
     tf.logging.set_verbosity(tf.logging.INFO)
     tf.app.run(main)
+
+# To create an executable
+# Navigate to the project location in command prompt
+# Execute the command "pyinstaller -F --clean --add-data data;data estimator.py input.py data.py"
