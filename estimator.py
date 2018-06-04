@@ -61,11 +61,11 @@ def main(argv):
             hidden_units=[
                 16, 15, 14, 13
             ],
-            n_classes=5, model_dir='language_detector', config=checkpoint_config
+            n_classes=4, model_dir='language_detector', config=checkpoint_config
         )
 
         batch_size = 100
-        train_steps = 1000
+        train_steps = 10000
 
         # Uses the classifier to train the neural network
         classifier.train(
@@ -107,34 +107,35 @@ def main(argv):
             print(char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, char14,
                   char15, char16, sentinel)
 
-            prediction_x = {
-                'Char1': char1,
-                'Char2': char2,
-                'Char3': char3,
-                'Char4': char4,
-                'Char5': char5,
-                'Char6': char6,
-                'Char7': char7,
-                'Char8': char8,
-                'Char9': char9,
-                'Char10': char10,
-                'Char11': char11,
-                'Char12': char12,
-                'Char13': char13,
-                'Char14': char14,
-                'Char15': char15,
-                'Char16': char16,
-            }
+            if not sentinel:
+                prediction_x = {
+                    'Char1': char1,
+                    'Char2': char2,
+                    'Char3': char3,
+                    'Char4': char4,
+                    'Char5': char5,
+                    'Char6': char6,
+                    'Char7': char7,
+                    'Char8': char8,
+                    'Char9': char9,
+                    'Char10': char10,
+                    'Char11': char11,
+                    'Char12': char12,
+                    'Char13': char13,
+                    'Char14': char14,
+                    'Char15': char15,
+                    'Char16': char16,
+                }
 
-            prediction = classifier.predict(
-                input_fn=lambda: data.test_input_fn(prediction_x, labels=None, batch_size=batch_size))
+                prediction = classifier.predict(
+                    input_fn=lambda: data.test_input_fn(prediction_x, labels=None, batch_size=batch_size))
 
-            expected_y = ['German', 'English', 'Spanish', 'Italian', 'Lithuanian']
-            for pred_dict, expec in zip(prediction, expected_y):
-                template = '\nPrediction is "{}" ({:.1f}%)'
-                class_id = pred_dict['class_ids'][0]
-                probability = pred_dict['probabilities'][class_id]
-                print(template.format(data.LANGUAGE[class_id], 100 * probability))
+                expected_y = ['German', 'English', 'Spanish', 'Italian']
+                for pred_dict, expec in zip(prediction, expected_y):
+                    template = '\nPrediction is "{}" ({:.1f}%)'
+                    class_id = pred_dict['class_ids'][0]
+                    probability = pred_dict['probabilities'][class_id]
+                    print(template.format(data.LANGUAGE[class_id], 100 * probability))
 
 
 if __name__ == '__main__':
