@@ -17,6 +17,8 @@ def read_word():
     if word == "-1":
         sentinel = True
 
+    word = word.lower()
+
     return word, sentinel
 
 

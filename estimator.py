@@ -65,7 +65,7 @@ def main(argv):
         )
 
         batch_size = 100
-        train_steps = 10000
+        train_steps = 1
 
         # Uses the classifier to train the neural network
         classifier.train(
