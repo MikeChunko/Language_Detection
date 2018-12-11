@@ -63,46 +63,26 @@ def list_to_features(integer_list=[0] * 16):
     char16 = [integer_list[15]]
 
     return char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, \
-           char14, char15, char16
+        char14, char15, char16
 
 
 def input_features():
     """ Used for entering custom words to use for prediction """
-    word = str()
-    sentinel = False
-    word, sentinel = read_word()
 
-    integer_list = list()
+    word, sentinel = read_word()
     integer_list = string_to_integer(word)
 
-    char1 = list()
-    char2 = list()
-    char3 = list()
-    char4 = list()
-    char5 = list()
-    char6 = list()
-    char7 = list()
-    char8 = list()
-    char9 = list()
-    char10 = list()
-    char11 = list()
-    char12 = list()
-    char13 = list()
-    char14 = list()
-    char15 = list()
-    char16 = list()
-
     char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, \
-    char14, char15, char16 = list_to_features(integer_list)
+        char14, char15, char16 = list_to_features(integer_list)
 
     return char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, char14, \
-           char15, char16, sentinel
+        char15, char16, sentinel
 
 
 def main():
     while True:
         char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, char14, \
-        char15, char16, sentinel = input_features()
+            char15, char16, sentinel = input_features()
 
         print(char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, char14,
               char15, char16, sentinel)

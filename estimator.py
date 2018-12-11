@@ -83,28 +83,12 @@ def main(argv):
         print("\nAccuracy with test data: {accuracy:0.3%}\n".format(**eval_result))
 
         # Takes custom input for prediction
-        char1 = list()
-        char2 = list()
-        char3 = list()
-        char4 = list()
-        char5 = list()
-        char6 = list()
-        char7 = list()
-        char8 = list()
-        char9 = list()
-        char10 = list()
-        char11 = list()
-        char12 = list()
-        char13 = list()
-        char14 = list()
-        char15 = list()
-        char16 = list()
         sentinel = False
 
         while not sentinel:
             print("----------------")
             char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, \
-            char14, char15, char16, sentinel = input.input_features()
+                char14, char15, char16, sentinel = input.input_features()
             print(char1, char2, char3, char4, char5, char6, char7, char8, char9, char10, char11, char12, char13, char14,
                   char15, char16, sentinel)
 
