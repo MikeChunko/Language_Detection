@@ -11,8 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Preprocessing
-{
+public class Preprocessing {
     // Takes a .txt file and converts it to a format usable by the language
     // detection program
     // The expected format of the unprocessed .txt file is the format provided
@@ -21,32 +20,26 @@ public class Preprocessing
     //  inputPath: the filepath of the file to be read from
     //  outputPath: the filepath of the file to write to
     //  languageCode: The language code of the input language. Leave it as "" if this it to be a test file
-    public static void prepareData(String inputPath, String outputPath, String languageCode)
-    {
+    public static void prepareData(String inputPath, String outputPath, String languageCode) {
         // The new version of the document contents containing cleaned-up data
         ArrayList<String> newParts = new ArrayList<String>();
 
         // Reading in and cleaning up the input
-        try
-        {
+        try {
             FileReader fileReader = new FileReader(inputPath);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line = bufferedReader.readLine();
 
-            while(line != null)
-            {
+            while (line != null) {
                 String[] parts = line.split(" ");
-                for(int i = 0; i < parts.length; i++)
-                {
+                for (int i = 0; i < parts.length; i++) {
                     boolean isLowerCase = true;
-                    for(int j = 0; j < parts[i].length() && isLowerCase; j++)
-                    {
+                    for (int j = 0; j < parts[i].length() && isLowerCase; j++) {
                         char currentChar = parts[i].charAt(j);
 
                         // Replaces non-standard characters with their English 26-letter alphabet equivalent
                         String replacement = "";
-                        switch(currentChar)
-                        {
+                        switch (currentChar) {
                             //Uppercase version of characters
                             case 192: //À
                             case 193: //Á
@@ -206,14 +199,10 @@ public class Preprocessing
                         }
 
                         // If a non-standard character was found, replaces it with its standard equivalent
-                        if(!replacement.equals(""))
-                        {
-                            if (j == parts[i].length() - 1)
-                            {
+                        if (!replacement.equals("")) {
+                            if (j == parts[i].length() - 1) {
                                 parts[i] = parts[i].substring(0, j) + replacement;
-                            }
-                            else
-                            {
+                            } else {
                                 parts[i] = parts[i].substring(0, j) + replacement + parts[i].substring(j + 1);
                             }
                             currentChar = parts[i].charAt(j);
@@ -222,18 +211,15 @@ public class Preprocessing
                         // Prevents words with punctuation, or uppercase words such as
                         // acronyms from being used
                         // Only ignores the first character in German so that nouns can be used
-                        if(!(currentChar >= 97 && currentChar <= 122))
-                        {
+                        if (!(currentChar >= 97 && currentChar <= 122)) {
                             //if(languageCode != "de" || j != 0)
                             //{
                             //    isLowerCase = false;
                             //}
-                            if(languageCode == "de" && j == 0 && currentChar >= 65 && currentChar <= 90)
-                            {
+                            if (languageCode.equals("de") && j == 0 && currentChar >= 65 && currentChar <= 90) {
                                 parts[i] = parts[i].substring(0, j) + Character.toLowerCase(currentChar) +
                                         parts[i].substring(j + 1);
-                            }
-                            else
+                            } else
                                 isLowerCase = false;
                         }
 
@@ -242,7 +228,7 @@ public class Preprocessing
                     // Prevents words with punctuation, or uppercase words such as
                     // names, places, or acronyms from being used
                     // Prevents incredibly brief words like "I" or long words
-                    if(isLowerCase && parts[i].length() > 1 && parts[i].length() <= 16)
+                    if (isLowerCase && parts[i].length() > 1 && parts[i].length() <= 16)
                         newParts.add(parts[i]);
                 } // End line parts for loop
                 line = bufferedReader.readLine();
@@ -250,30 +236,23 @@ public class Preprocessing
 
             bufferedReader.close();
         } // End input loop
-        catch(FileNotFoundException ex)
-        {
+        catch (FileNotFoundException ex) {
             System.out.println("Unable to open file '" + inputPath + "'");
-        }
-        catch(IOException ex)
-        {
+        } catch (IOException ex) {
             System.out.println("Error reading file '" + inputPath + "'");
         }
 
         // Printing the contents of newParts to a text document
-        try
-        {
+        try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputPath));
 
-            for(int i = 0; i < newParts.size(); i++)
-            {
-                for(int j = 0; j < 16; j++)
-                {
-                    if(j == 0)
-                        bufferedWriter.append("" + (int)(newParts.get(i).charAt(j) - '`'));
-                    else
-                    {
-                        if(j < newParts.get(i).length())
-                            bufferedWriter.append("," + (int)(newParts.get(i).charAt(j) - '`'));
+            for (int i = 0; i < newParts.size(); i++) {
+                for (int j = 0; j < 16; j++) {
+                    if (j == 0)
+                        bufferedWriter.append("" + (int) (newParts.get(i).charAt(j) - '`'));
+                    else {
+                        if (j < newParts.get(i).length())
+                            bufferedWriter.append("," + (int) (newParts.get(i).charAt(j) - '`'));
                         else
                             bufferedWriter.append(",0");
                     }
@@ -288,13 +267,9 @@ public class Preprocessing
             }
 
             bufferedWriter.close();
-        }
-        catch(FileNotFoundException ex)
-        {
+        } catch (FileNotFoundException ex) {
             System.out.println("Unable to open file '" + outputPath + "'");
-        }
-        catch(IOException ex)
-        {
+        } catch (IOException ex) {
             System.out.println("Error reading file '" + outputPath + "'");
         } // End output loop
     }

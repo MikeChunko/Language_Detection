@@ -4,10 +4,8 @@
 // 2018
 
 // The driver for doing all of the preprocessing
-public class Driver
-{
-    public static void main(String[] args)
-    {
+public class Driver {
+    public static void main(String[] args) {
         Preprocessing.prepareData("D:/Mike/Documents/NeuralNetworkData/train-raw-de.txt",
                 "D:/Mike/Documents/NeuralNetworkData/train-de.txt", "0");
 
