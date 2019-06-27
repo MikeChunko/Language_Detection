@@ -4,7 +4,7 @@ The neural network uses TensorFlow to classify whether a word is in German, Engl
 All data is obtained from the Leipzig Corpora Collection.
 
 # Release
-This branch contains only the .py, .java, and executable files (along with the data necessary for the .exe)
+This branch contains only the .py, .java, and executable files (along with the data necessary for the .exe).
 The other branches contain other files useful in editing the code.
 
 # Running It
