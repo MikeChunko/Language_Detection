@@ -200,11 +200,10 @@ public class Preprocessing {
 
                         // If a non-standard character was found, replaces it with its standard equivalent
                         if (!replacement.equals("")) {
-                            if (j == parts[i].length() - 1) {
+                            if (j == parts[i].length() - 1)
                                 parts[i] = parts[i].substring(0, j) + replacement;
-                            } else {
+                            else
                                 parts[i] = parts[i].substring(0, j) + replacement + parts[i].substring(j + 1);
-                            }
                             currentChar = parts[i].charAt(j);
                         }
 
@@ -246,24 +245,20 @@ public class Preprocessing {
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputPath));
 
-            for (int i = 0; i < newParts.size(); i++) {
+            for (String newPart : newParts) {
                 for (int j = 0; j < 16; j++) {
                     if (j == 0)
-                        bufferedWriter.append("" + (int) (newParts.get(i).charAt(j) - '`'));
+                        bufferedWriter.append("" + (int) (newPart.charAt(j) - '`'));
                     else {
-                        if (j < newParts.get(i).length())
-                            bufferedWriter.append("," + (int) (newParts.get(i).charAt(j) - '`'));
+                        if (j < newPart.length())
+                            bufferedWriter.append("," + (int) (newPart.charAt(j) - '`'));
                         else
                             bufferedWriter.append(",0");
                     }
                 }
 
                 bufferedWriter.append("," + languageCode);
-
                 bufferedWriter.append("\n");
-
-                System.out.println(newParts.get(i));
-
             }
 
             bufferedWriter.close();
