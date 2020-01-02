@@ -22,10 +22,9 @@ public class Preprocessing {
     //  languageCode: The language code of the input language. Leave it as "" if this it to be a test file
     public static void prepareData(String inputPath, String outputPath, String languageCode) {
         // The new version of the document contents containing cleaned-up data
-        ArrayList<String> newParts = new ArrayList<String>();
-
-        // Reading in and cleaning up the input
-        try {
+        ArrayList<String> newParts = new ArrayList<String>(); 
+        
+        try { // Reading in and cleaning up the input
             FileReader fileReader = new FileReader(inputPath);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line = bufferedReader.readLine();
@@ -211,17 +210,12 @@ public class Preprocessing {
                         // acronyms from being used
                         // Only ignores the first character in German so that nouns can be used
                         if (!(currentChar >= 97 && currentChar <= 122)) {
-                            //if(languageCode != "de" || j != 0)
-                            //{
-                            //    isLowerCase = false;
-                            //}
-                            if (languageCode.equals("de") && j == 0 && currentChar >= 65 && currentChar <= 90) {
+                            if (languageCode.equals("de") && j == 0 && currentChar >= 65 && currentChar <= 90)
                                 parts[i] = parts[i].substring(0, j) + Character.toLowerCase(currentChar) +
                                         parts[i].substring(j + 1);
-                            } else
+                            else
                                 isLowerCase = false;
                         }
-
                     } // End character for loop
 
                     // Prevents words with punctuation, or uppercase words such as
@@ -232,7 +226,6 @@ public class Preprocessing {
                 } // End line parts for loop
                 line = bufferedReader.readLine();
             } // End while loops to get next line
-
             bufferedReader.close();
         } // End input loop
         catch (FileNotFoundException ex) {
@@ -256,7 +249,6 @@ public class Preprocessing {
                             bufferedWriter.append(",0");
                     }
                 }
-
                 bufferedWriter.append("," + languageCode);
                 bufferedWriter.append("\n");
             }
